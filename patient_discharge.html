@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Check-Out</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <h2>Check-Out</h2>
+            <form id="checkoutForm" method="POST" action="check_out.php">
+                <label for="customerId">Patient ID:</label>
+                <select id="customerId" name="customerId" onchange="fetchPatientDetails()">
+                    <option value="">Select Patient</option>
+                   
+                </select>
+                
+                <br>
+                <button type="submit">Discharge</button>
+                <button type="button" onclick="window.location.href='index.html'">Back</button>
+            </form>
+        </div>
+    </div>
+    <script src="./dis.js"></script>
+</body>
+</html>
