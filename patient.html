@@ -1,3 +1,23 @@
+<?php
+// Database configuration
+$servername = "localhost"; 
+$username = "root";        
+$password = "";            
+$dbname = "hospital_management"; 
+
+// Create a connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Fetch patient records
+$sql = "SELECT * FROM patients";
+$result = $conn->query($sql);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,6 +33,17 @@
         th { background-color: #4CAF50; color: white; }
         a { text-decoration: none; color: #007BFF; }
         a:hover { text-decoration: underline; }
+        .back-btn {
+            margin-top: 20px;
+            display: inline-block;
+            padding: 8px 16px;
+            background: #000;
+            color: #fff;
+            border-radius: 5px;
+        }
+        .back-btn:hover {
+            background: #333;
+        }
     </style>
 </head>
 <body>
@@ -28,7 +59,7 @@
             <th>Time</th>
             <th>Deposit</th>
         </tr>
-        <?php if ($result->num_rows > 0): ?>
+        <?php if ($result && $result->num_rows > 0): ?>
             <?php while ($row = $result->fetch_assoc()): ?>
                 <tr>
                     <td><?php echo $row['id']; ?></td>
@@ -47,5 +78,11 @@
             </tr>
         <?php endif; ?>
     </table>
+
+    <a href="index.html" class="back-btn">Back</a>
 </body>
 </html>
+
+<?php
+$conn->close(); // Close connection at the end
+?>
